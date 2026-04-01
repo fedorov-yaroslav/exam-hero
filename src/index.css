@@ -1,0 +1,54 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  color: #213547;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.option{
+  height: 3rem;
+  width: 4rem;
+  margin: 1rem 1rem 1rem 0;
+  border-radius: 8px;
+  background: white;
+  transition: 0.3s ease;
+}
+
+.option:hover {
+  background: #efefef;
+}
+
+.container{
+  margin-top: 1rem;
+  width: 500px;
+  border: 1px solid black;
+  height: 200px;
+  border-radius: 8px;
+  padding: 2rem;
+  background: #ffffff;
+}
