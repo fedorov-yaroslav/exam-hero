@@ -1,11 +1,8 @@
 import { useState } from 'react'
 
-function MainComponent() {
-  const options: number[] = [22,24,32,34]
+function MainComponent({question, options, correctAnswer}) {
 
   const [isAnswered, setIsAnswered] = useState<boolean>(false)
-
-  const correctAnswer = 24
 
   const [choice, setChoice] = useState<number | null>(null)
 
@@ -15,7 +12,7 @@ function MainComponent() {
       <>
         <h1>Квиз: математика</h1>
         <div className='container'>
-          <p>Сколько будет 3 * 8</p>
+          <p>{question}</p>
           {options.map((option, index) =>
               <button
                   style={{
