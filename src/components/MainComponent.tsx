@@ -10,9 +10,9 @@ function MainComponent({question, options, correctAnswer}) {
 
   return (
       <>
-        <h1>Квиз: математика</h1>
+        <h1>Квиз: Физика</h1>
         <div className='container'>
-          <p>{question}</p>
+          <p className='question'>{question}</p>
           {options.map((option, index) =>
               <button
                   style={{
