@@ -1,51 +1,58 @@
-import { useState } from 'react'
 import './App.css'
 function App() {
-  const [number, setNumber] = useState(0)
 
-  const [interval, setInterval] = useState(1)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
 
-  const [historyRecords, setHistoryRecords] = useState([])
+    const password = formData.get('password')
+    const repeatPassword = formData.get('repeatPassword')
 
-  const minus = () => {
-    if (number - interval >= 0){
-      const current = number;
-      setNumber(prev => prev - interval);
-      const message = `${current} - ${interval} = ${Number(current) - Number(interval)}`;
-      setHistoryRecords(prev => [...prev, message])
+    if (password !== repeatPassword) {
+      alert('Пароли не совпадают')
+      return
     }
-  }
 
-  const plus = () => {
-    const current = number;
-    setNumber(prev => Number(prev) + Number(interval));
-    const message = `${current} + ${interval} = ${Number(current) + Number(interval)}`
-    setHistoryRecords(prev => [...prev, message])
-  }
-
-  const clearHistory = () => {
-    setHistoryRecords([]);
+    console.log('Данные формы:', Object.fromEntries(formData))
+    alert('Форма отправлена!')
+    e.target.reset()
   }
 
   return (
-      <article>
-        <p className= 'light-grey'>Минимальное значение: 0</p>
-        <div className = 'container'>
-          <p className=' main-number'>{number}</p>
-          <button onClick = {plus}>+{interval}</button>
-          <button onClick = {minus}>-{interval}</button>
-          <button onClick = {() => setNumber(0)}>Сброс</button>
-          <input type="number" placeholder = 'Шаг изменения' value = {interval} onChange = {(e) => setInterval(e.target.value)}/>
-        </div>
-        <p className = 'light-grey'>История изменений: </p>
-        <button className = 'clear-button' onClick={clearHistory}>Очистить журнал</button>
-        <div>
-          {historyRecords
-              .reverse()
-              .slice(0, 5)
-              .map(record=> (<p className='light-grey small'>{record}</p>))}
-        </div>
-      </article>
+      <>
+        <h2>
+          Регистрация
+        </h2>
+        <form action="#" onSubmit={handleSubmit}>
+          <label htmlFor="name">
+            <span className='form-text'>Имя <span className='red'>*</span></span>
+            <input type='text' placeholder='Имя' id='name' name='name' required />
+          </label>
+          <label htmlFor="surname">
+            <span className='form-text'>Фамилия <span className='red'>*</span></span>
+            <input type="text" placeholder='Фамилия' id='surname' name='surname' required />
+          </label>
+          <label htmlFor="city">
+            <span className='form-text'>Город <span className='red'>*</span></span>
+            <input type="text" placeholder='Город' id='city' name='city' required />
+          </label>
+          <br/>
+          <label htmlFor="email">
+            <span className='form-text'>Эл. почта <span className='red'>*</span></span>
+            <input type="email" placeholder='Эл. почта' id='email' name='email' required />
+          </label>
+          <label htmlFor="password">
+            <span className='form-text'>Пароль <span className='red'>*</span></span>
+            <input type="password" placeholder='Введите пароль' id='password' name='password' required />
+          </label>
+          <label htmlFor="repeatPassword">
+            <span className='form-text'>Подтвердите пароль <span className='red'>*</span></span>
+            <input type="password" placeholder='Подтвердите пароль' id='repeatPassword' name='repeatPassword' required />
+          </label>
+          <p className='small'><span className='red'>*</span> Обязательное поле</p>
+          <button type='submit' className='submit-button'>Зарегистрироваться</button>
+        </form>
+      </>
   )
 }
 
